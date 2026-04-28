@@ -100,7 +100,6 @@ class RecipeCard extends HTMLElement {
 				color: #70757A;
 				font-size: 12px;
 			}
-		)
 		`
 		// A5
 		shadow.append(article);
@@ -170,3 +169,4 @@ class RecipeCard extends HTMLElement {
 
 // A8. TODO - Define the Class as a customElement so that you can create
 //           'recipe-card' elements
+customElements.define("recipe-card", RecipeCard);
