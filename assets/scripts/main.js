@@ -65,6 +65,9 @@ function saveRecipesToStorage(recipes) {
 	// B1. TODO - Complete the functionality as described in this function
 	//            header. It is possible in only a single line, but should
 	//            be no more than a few lines.
+	
+	// B1
+	localStorage.setItem("recipes", JSON.stringify(recipes));
 }
 
 /**
@@ -90,4 +93,50 @@ function initFormHandler() {
 	// Steps B12 & B13 will occur inside the event listener from step B11
 	// B12. TODO - Clear the local storage
 	// B13. TODO - Delete the contents of <main>
+
+	// B2
+	const form = document.getElementById("new-recipe");
+
+	// B3
+	form.addEventListener("submit", (event) => {
+		// B4
+		const formData = new FormData(form);
+
+		// B5
+		const recipeObject = {};
+		for (const [key, value] of formData.entries()) {
+			recipeObject[key] = value;
+		}
+
+		// B6
+		const recipeCard = document.createElement("recipe-card");
+
+		// B7
+		recipeCard.data = recipeObject;
+
+		// B8
+		const main = document.querySelector("main");
+		main.append(recipeCard);
+
+		// B9
+		const recipes = getRecipesFromStorage();
+		recipes.push(recipeObject);
+		saveRecipesToStorage(recipes);
+	});
+	
+
+	// B10
+	const clear = document.querySelector("button[class='danger']");
+
+	// B11
+	clear.addEventListener("click", (event) => {
+		// B12
+		localStorage.clear();
+		
+		// B13
+		const main = document.querySelector("main");
+		while (main.firstChild) {
+			main.removeChild(main.firstChild);
+		}
+	});
 }
