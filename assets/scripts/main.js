@@ -99,6 +99,8 @@ function initFormHandler() {
 
 	// B3
 	form.addEventListener("submit", (event) => {
+		event.preventDefault();
+
 		// B4
 		const formData = new FormData(form);
 
